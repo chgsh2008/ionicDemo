@@ -1,0 +1,133 @@
+
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-side-menu-content >
+
+    <ion-header-bar class="bar has-tabs-top bar-header" style="top:0">
+      <button class="button icon ion-navicon button-clear" on-tap="showMenu()"></button>
+      <h1 class="title">V2EX</h1>
+    </ion-header-bar>
+
+    <div id="tabs-hide" class="tabs-striped tabs-top">
+      <div class="tabs tabs-icon-top" ng-class="{'bar-subtab': slideHeader, 'has-subtab': !slideHeader}">
+        <a class="tab-item" ui-sref="index()" ng-class="{ active: isActive('/')}">
+          <i class="icon ion-home"></i>
+          Latest
+        </a>
+        <a class="tab-item" ui-sref="hot()" ng-class="{ active: isActive('/hot')}">
+          <i class="icon ion-fireball"></i>
+          Hot Topic
+        </a>
+      </div>
+    </div>
+
+    <div header="43" class="Center-Container" ng-show="!hasTopics" full-screen>
+      <div class="Absolute-Center" reload-animate>
+        <div class="reload-animate stop"></div>
+        <div class="reload-animate-inner stop"></div>
+        <div class="Absolute-Center" style="height:60%">
+          <div class="fix-top">
+            Tap to reload page
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <ion-content on-swipe-left="tabChangeLeft()" on-swipe-right="tabChangeRight()" scroll-watch ng-class="{'has-tabs-top': !slideHeader}">
+
+      <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+      </ion-refresher>
+
+      <ion-list>
+        <div class="main-list list card" ng-repeat="topic in topics track by $index">
+           <div class="item item-avatar">
+            <img ng-src="http:{{topic.member.avatar_normal}}">
+            <h2 class="show_title" on-tap="mainBodyShow = !mainBodyShow;resize()">{{topic.title}}</h2>
+            <p>
+              <span class="subdued">
+                <i class="icon ion-person"></i>
+                <a ui-sref="user({member: '{{topic.member.username}}'})">{{topic.member.username}}</a>
+              </span>
+              <span class="subdued">
+                <i class="icon ion-clock"></i>
+                {{topic.created*1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+              </span>
+            </p>
+          </div>
+
+          <div class="flip-in item item-body" ng-show="mainBodyShow">
+            <div ng-bind-html="topic.content_rendered"></div>
+            <p>
+              <span class="subdued">
+                最后修改于： {{topic.last_touched*1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+              </span>
+            </p>
+          </div>
+
+          <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" ui-sref="nodedetail({node_name:topic.node.name})">
+              <i class="icon ion-pricetag"></i>
+              {{topic.node.title}}
+            </a>
+            <a ui-sref="topic({id:{{topic.id}},scroll:true})" class="subdued">
+              <i class="icon ion-chatboxes"></i> {{topic.replies}}
+            </a>
+            <a class="tab-item" ui-sref="topic({id:{{topic.id}},scroll:false})">
+              <i class="icon ion-more" data-pack="ios" data-tags="forward"></i>
+              Detail
+            </a>
+          </div>
+        </div>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+
+    <div class="row row-center" style="height:30%">
+      <div class="col col-25"></div>
+      <div class="col col-50">
+        <a ng-href="{{logHref}}" on-tap="actionSheet()">
+          <img style="width:100%;border-radius: 50%;" ng-src="{{loginImg}}" alt="">
+        </a>
+      </div>
+      <div class="col col-25"></div>
+    </div>
+
+    <div class="list">
+
+      <a class="item item-icon-left" href="/#/">
+        <i class="icon ion-home"></i>
+        最新
+      </a>
+
+      <a class="item item-icon-left" href="#/cat/tech">
+        <i class="icon ion-ios-list"></i>
+        分类
+      </a>
+
+      <a class="item item-icon-left" ui-sref="node()">
+        <i class="icon ion-merge"></i>
+        节点
+      </a>
+
+      <a class="item item-icon-left" on-tap="toCollection()">
+        <i class="icon ion-ios-star-outline"></i>
+        收藏
+      </a>
+
+      <a class="item item-icon-left"  on-tap="toUser()">
+        <i class="icon ion-ios-person-outline"></i>
+        个人
+      </a>
+
+    </div>
+
+  </ion-side-menu>
+
+</ion-side-menus>
+
+

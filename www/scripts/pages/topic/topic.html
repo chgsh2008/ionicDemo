@@ -1,0 +1,76 @@
+
+<ion-header-bar class="bar bar-header">
+  <button ng-click="goBack()" class="button icon button-icon ion-chevron-left">回退</button>
+  <h1 class="title">V2EX</h1>
+</ion-header-bar>
+
+<ion-content>
+  <div header="43" class="Center-Container" ng-show="!hasTopics" full-screen>
+    <div class="Absolute-Center" reload-animate>
+      <div class="reload-animate stop"></div>
+      <div class="reload-animate-inner stop"></div>
+      <div class="Absolute-Center" style="height:60%">
+        <div class="fix-top">
+          Tap to reload page
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-list ng-show="hasTopics">
+    <div class="main-list list card" ng-repeat="topic in topics">
+       <div class="item item-avatar">
+        <img ng-src="http:{{topic.img}}">
+        <h2>{{topic.title}}</h2>
+        <p>
+          <span class="subdued">
+            <i class="icon ion-person"></i>
+            <a ui-sref="user({member:'{{topic.userurl}}'})">{{topic.user}}</a>
+          </span>
+          <span class="subdued">
+            <i class="icon ion-clock"></i>
+            {{topic.time}}
+            <!--{{topic.created*1000 | date:'yyyy-MM-dd HH:mm:ss'}}-->
+          </span>
+          <span class="subdued">
+            <i class="icon ion-pricetag"></i>
+            <a ui-sref="nodedetail({node_name:'{{topic.node}}'})">{{topic.node}}</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="item item-body">
+        <div class="content_detail" ng-bind-html="topic.subject"></div>
+        <p>
+          <span class="subdued">
+            最后修改于： {{topic.time}}<!--{{topic.last_touched*1000 | date:'yyyy-MM-dd HH:mm:ss'}}-->
+          </span>
+        </p>
+      </div>
+
+      <div delayed-scroll scroll-to="{{reply.scrollTo}}" total-items="{{reply.totalItems}}" class="reply list" ng-repeat-end>
+
+        <span id="{{$index + 1}}" class="item item-avatar" ng-repeat="replie in replies track by $index " >
+          <img ng-src="http:{{replie.member.avatar_normal}}">
+          <h2>
+            <a ui-sref="user({member: '{{replie.member.username}}'})">{{replie.member.username}}</a>
+            <span>
+              <i class="icon icon-right ion-thumbsup"></i>
+              {{replie.thanks}}
+            </span>
+          </h2>
+          <p ng-bind-html="replie.content_rendered"></p>
+        </span>
+
+      </div>
+
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll
+    ng-if="moreDataCanBeLoaded"
+    on-infinite="loadMore()"
+    distance="1%">
+  </ion-infinite-scroll>
+
+</ion-content>

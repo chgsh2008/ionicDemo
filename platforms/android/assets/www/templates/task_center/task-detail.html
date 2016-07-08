@@ -1,0 +1,75 @@
+<ion-view view-title="请审核【业务部】资料单" hide-nav-bar="true" hide-tabs="true">
+    <!-- header -->
+    <!--<ion-header-bar class="bar-positive" hide-nav-bar="true">-->
+        <!--<button class="icon-font-size button button-clear  ion-ios-arrow-back" ng-click="goPreviousView()"></button>-->
+        <!--<h1 class="title">请审核【业务部】资料单</h1>-->
+    <!--</ion-header-bar>-->
+    <!-- content -->
+    <ion-content>
+        <div class="buttons">
+            <button class="button" ng-click="goPreviousView()">返回</button>
+        </div>
+        <label class="item item-input">系统单号
+            <input type="text" value="123456798012">
+        </label>
+        <label class="item item-input">审批状态
+            <input type="text" value="待审批">
+        </label>
+        <label class="item item-input">审批时间
+            <input type="text" value="2015-12-10">
+        </label>
+        <label class="item item-input">审批时间
+            <textarea style="height: 60px; outline: none; resize : none;" class="padding-left"></textarea>
+        </label>
+        <div class="item item-divider">详细资料</div>
+        <ion-item>
+            <div class="row">
+                <div class="col-25">无料编号:</div>
+                <div class="col-75">A00020151211</div>
+            </div>
+            <div class="row">
+                <div class="col-25">物料名称:</div>
+                <div class="col-75">测试物料名称</div>
+            </div>
+            <div class="row">
+                <div class="col-25">数量:</div>
+                <div class="col-75">10</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <div class="row">
+                <div class="col-25">无料编号:</div>
+                <div class="col-75">A00020151212</div>
+            </div>
+            <div class="row">
+                <div class="col-25">物料名称:</div>
+                <div class="col-75">测试物料名称</div>
+            </div>
+            <div class="row">
+                <div class="col-25">数量:</div>
+                <div class="col-75">11</div>
+            </div>
+        </ion-item>
+    </ion-content>
+    <!-- footer -->
+    <ion-footer-bar class="bar-stable">
+        <div class="tabs tabs-icon-top">
+            <a class="tab-item" ui-sref="rollback-pending-task" ng-click="modal.hide()" >
+                <i class="icon ion-ios-undo-outline positive"></i>
+                <span class="tabs-title">退回</span>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-checkmark-outline positive"></i>
+                <span class="tabs-title">审核</span>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-shuffle positive"></i>
+                <span class="tabs-title">转交</span>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-ios-eye-outline positive"></i>
+                <span class="tabs-title">意见</span>
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

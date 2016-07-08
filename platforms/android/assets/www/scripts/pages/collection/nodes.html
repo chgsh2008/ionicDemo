@@ -1,0 +1,26 @@
+
+<div header="43" class="Center-Container" ng-show="!hasTopics" full-screen>
+  <div class="Absolute-Center" reload-animate>
+    <div class="reload-animate stop"></div>
+    <div class="reload-animate-inner stop"></div>
+    <div class="Absolute-Center" style="height:60%">
+      <div class="fix-top">
+        Tap to reload page
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ion-content scroll-watch ng-class="{'has-tabs-top': !slideHeader}">
+
+  <a ng-repeat="topic in topics track by $index" class="item item-thumbnail-left" ui-sref="nodedetail({node_name:'{{topic.nodeurl}}'})">
+    <img ng-src="http:{{topic.img}}">
+    <h2>{{topic.nodename}}</h2>
+    <p>
+      <i class="icon ion-chatbox"></i>
+      {{topic.comments}}
+    </p>
+  </a>
+
+</ion-content>

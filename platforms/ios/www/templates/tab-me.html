@@ -1,0 +1,114 @@
+<!--<body>-->
+<!--<ion-nav-bar class="bar-positive"></ion-nav-bar>-->
+<!--<ion-nav-view>-->
+<ion-view view-title="About me" class="bar-stable bar-energized bar-assertive"  >
+    <!--<ion-nav-bar class="bar-assertive">-->
+        <!--<ion-nav-back-button></ion-nav-back-button>-->
+    <!--</ion-nav-bar>-->
+    <ion-nav-bar class="bar-assertive">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back"></i> 返回
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-buttons side="left">
+        <div class="buttons">
+            <button class="button button-icon icon ion-ios-minus-outline"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <div class="buttons">
+            <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+                Reorder
+            </button>
+        </div>
+    </ion-nav-buttons>
+    <!--可以把 ion-view的导航栏隐藏了(hide-nav-bar="true"),使用ion-header-bar代替-->
+    <!--<ion-header-bar class="bar bar-header bar-assertive" >-->
+        <!--<div class="buttons">-->
+            <!--<button class="button button-icon icon ion-ios-minus-outline"-->
+                    <!--ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>-->
+        <!--</div>-->
+        <!--<h1 class="title">Delete/Option</h1>-->
+        <!--<div class="buttons">-->
+            <!--<button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">-->
+                <!--Reorder-->
+            <!--</button>-->
+        <!--</div>-->
+    <!--</ion-header-bar>-->
+    <ion-content overflow-scroll="true">
+        <ion-refresher
+                pulling-text="pull to refresh"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <!--<ion-toggle  ng-model="settings.enableFriends" toggle-class="toggle-calm" ng-switch="">-->
+            <!--Enable Friends-->
+        <!--</ion-toggle>-->
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+            <ion-item ng-repeat="item in items">
+                <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)"></ion-delete-button>
+                <ion-option-button class="button-assertive"
+                                   ng-click="edit(item)">
+                    Edit
+                </ion-option-button>
+                <ion-option-button class="button-calm"
+                                   ng-click="share(item)">
+                    Share
+                </ion-option-button>
+                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                Hello, {{item}}
+            </ion-item>
+            <ion-toggle  ng-model="settings.enableFriends" toggle-class="toggle-calm" ng-switch="">
+                Enable Friends
+            </ion-toggle>
+            <button class="button button-positive" on-tap="testActionSheet()">
+                action sheet 测试
+            </button>
+            <button class="button button-calm" on-tap="testBackdrop()">
+                back drop演示
+            </button>
+            <ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
+            <ion-radio ng-model="choice" ng-value="'A'" ng-change="radioChanged('A')">Choose A</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'B'" ng-change="radioChanged('B')">Choose B</ion-radio>
+        </ion-list>
+        <img collection-repeat="photo in photos"
+             item-width="33%"
+             item-height="300"
+             ng-src="{{photo.src}}">
+        <ion-scroll direction="x" class="available-scroller">
+            <div class="photo" collection-repeat="photo in photos"
+                 item-heigth="250" item-width="photo.width + 30">
+                <img ng-src="{{photo.src}}" >
+            </div>
+        </ion-scroll>
+        <div class="buttons">
+            <button class="button" ng-click="showMyModal()">编辑</button>
+        </div>
+        <a nav-transition="ios"  nav-direction="forward" href="#/tab/me/ionNavViewDemo">导航测试</a>
+        <p>
+        <div class="buttons">
+            <button ng-click="openPopover($event)" class="button">Open Popover</button>
+        </div>
+        </p>
+        <button class="button button-dark" ng-click="showPopup()">
+            show
+        </button>
+        <button class="button button-primary" ng-click="showConfirm()">
+            Confirm
+        </button>
+        <button class="button button-positive" ng-click="showAlert()">
+            Alert
+        </button>
+    </ion-content>
+        <ion-footer-bar align-title="center" class="bar bar-footer bar-assertive">
+            <div class="buttons">
+                <button class="button">Left Button</button>
+            </div>
+            <h1 class="title">Delete/Option</h1>
+            <div class="buttons" ng-click="doSomething()">
+                <button class="button">Right Button</button>
+            </div>
+        </ion-footer-bar>
+</ion-view>
+<!--</ion-nav-view>-->
+<!--</body>-->

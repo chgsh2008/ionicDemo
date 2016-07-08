@@ -1,0 +1,63 @@
+
+<ion-header-bar class="bar bar-header">
+  <button ng-click="goBack()" class="button icon button-icon ion-chevron-left">鍥為€€</button>
+  <h1 class="title">V2EX</h1>
+  <a class="button icon-left ion-home button-clear button-dark" ui-sref="index()"></a>
+</ion-header-bar>
+
+<ion-header-bar class="bar bar-subheader">
+  <ion-scroll direction="x">
+    <div class="scrolltabs" id="scrollbutton">
+      <a class="button button button-clear button-dark" ng-repeat="name in names" ng-class="activeClass('{{name.taburl}}')" ui-sref="cat({catname:'{{name.taburl}}'})" id="{{name.taburl}}">
+        {{name.name}}
+      </a>
+    </div>
+  </ion-scroll>
+</ion-header-bar>
+
+<div header="43" class="Center-Container" ng-show="!hasTopics" full-screen>
+  <div class="Absolute-Center" reload-animate>
+    <div class="reload-animate stop"></div>
+    <div class="reload-animate-inner stop"></div>
+    <div class="Absolute-Center" style="height:60%">
+      <div class="fix-top">
+        Tap to reload page
+      </div>
+    </div>
+  </div>
+</div>
+
+<ion-content on-swipe-left="tabChangeLeft()" on-swipe-right="tabChangeRight()">
+
+  <ion-list>
+    <div class="main-list list card" ng-repeat="node in nodes track by $index">
+       <div class="item item-avatar">
+        <img ng-src="http:{{node.img}}">
+        <h2 class="show_title"><a ui-sref="topic({id:'{{node.topicurl}}',scroll:false})">{{node.title}}</a></h2>
+        <p>
+          <span class="subdued">
+            <i class="icon ion-person"></i>
+            {{node.user}}
+          </span>
+        </p>
+
+        <span class="badge badge-stable">{{node.replies}}</span>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ui-sref="nodedetail({ 'node_name' : node.nodeurl})">
+          <i class="icon ion-pricetag"></i>
+          {{node.nodename}}
+        </a>
+        <a ui-sref="topic({id:{{node.topicurl}},scroll:true})" class="subdued">
+          <i class="icon ion-chatboxes"></i> {{node.replies}}
+        </a>
+        <a class="tab-item" ui-sref="topic({id:{{node.topicurl}},scroll:false})">
+          <i class="icon ion-more" data-pack="ios" data-tags="forward"></i>
+          Detail
+        </a>
+      </div>
+    </div>
+  </ion-list>
+
+</ion-content>

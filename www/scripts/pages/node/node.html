@@ -1,0 +1,35 @@
+
+<ion-header-bar class="bar bar-header">
+  <button ng-click="goBack()" class="button icon button-icon ion-chevron-left">回退</button>
+  <h1 class="title">V2EX</h1>
+</ion-header-bar>
+
+<div header="43" class="Center-Container" ng-show="!hasTopics" full-screen>
+  <div class="Absolute-Center" reload-animate>
+    <div class="reload-animate stop"></div>
+    <div class="reload-animate-inner stop"></div>
+    <div class="Absolute-Center" style="height:60%">
+      <div class="fix-top">
+        Tap to reload page
+      </div>
+    </div>
+  </div>
+</div>
+
+<ion-content>
+  <div class="list">
+
+  <div class="item item-divider item-icon-left"  ng-repeat-start="(key,val) in nodes" on-tap="itemShow = !itemShow;resize()" style="line-height:2.1" >
+    <i class="icon ion-ios-arrow-down icon-right" ng-class="{'arrowtoggle' : itemShow}"></i>
+    {{key}}
+  </div>
+
+  <a class="item slide-top item-icon-right" ng-repeat="value in val" ui-sref="nodedetail({ 'node_name' : value[1]})" ng-show="itemShow">
+    <i class="icon ion-ios-arrow-right"></i>
+    {{value[0]}}
+  </a>
+
+  <div ng-repeat-end></div>
+
+</div>
+</ion-content>

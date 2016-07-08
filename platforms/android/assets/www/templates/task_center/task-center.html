@@ -1,0 +1,16 @@
+<ion-view hide-nav-bar="true" view-title="任务中心">
+    <ion-content>
+        <ion-nav-view></ion-nav-view>
+        <ion-tabs class="tabs-top no-header tabs-positive tabs-striped" delegate-handle="taskCenter">
+            <ion-tab title="{{'taskCenter.todo' | translate}}" href="#/tab/taskCenter/todo">
+                    <!--<ion-nav-view name="tab.task-center.todo"></ion-nav-view>-->
+            </ion-tab>
+            <ion-tab title="{{'taskCenter.toAccept' | translate}}" href="#/tab/taskCenter/to-accept">
+                 <!--<ion-nav-view name="tab.task-center.toAccept"></ion-nav-view>-->
+            </ion-tab>
+            <ion-tab title="{{'taskCenter.done' | translate}}" href="#/tab/taskCenter/done">
+                 <!--<ion-nav-view name="tab.task-center.done"></ion-nav-view>-->
+            </ion-tab>
+        </ion-tabs>
+    </ion-content>
+</ion-view>

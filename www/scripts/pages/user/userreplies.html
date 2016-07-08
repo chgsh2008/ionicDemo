@@ -1,0 +1,19 @@
+
+<ul class="list">
+  <li class="item" ng-repeat="replie in replies" >
+    <div class="row">
+      <div class="col col-75 item-break">
+        {{replie.reply}} <br>
+        <a ui-sref="topic({id:'{{replie.url}}',scroll:false})">{{replie.replySubject}}</a>
+      </div>
+      <div class="col">{{replie.time}}</div>
+    </div>
+    <div class="line">
+      <div class="ankal"></div>
+    </div>
+    <div class="row" style="background: #ccc;">
+      <p ng-bind-html="replie.content"></p>
+    </div>
+  </li>
+</ul>
+

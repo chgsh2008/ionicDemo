@@ -1,0 +1,31 @@
+
+<div class="main-list list card" ng-repeat="topic in topics track by $index">
+   <div class="item">
+    <h2 class="show_title"><a ui-sref="topic({id:'{{topic.titleurl}}',scroll:false})">{{topic.title}}</a></h2>
+    <p>
+      <span class="subdued">
+        <i class="icon ion-person"></i>
+        <a ui-sref="user({member:'{{topic.user}}'})">{{topic.user}}</a>
+      </span>
+      <span class="subdued">
+        <i class="icon ion-clock"></i>
+        最后回复: <a ui-sref="user({member:'{{topic.lastuser}}'})">{{topic.lastuser}}</a>
+      </span>
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" ui-sref="nodedetail({node_name:'{{topic.nodeurl}}'})">
+      <i class="icon ion-pricetag"></i>
+      {{topic.node}}
+    </a>
+    <a ui-sref="topic({id:'{{topic.titleurl}}',scroll:true})" class="subdued">
+      <i class="icon ion-chatboxes"></i>
+      {{topic.comment}}
+    </a>
+    <a class="tab-item" ui-sref="topic({id:'{{topic.titleurl}}',scroll:false})">
+      <i class="icon ion-more" data-pack="ios" data-tags="forward"></i>
+      Detail
+    </a>
+  </div>
+</div>

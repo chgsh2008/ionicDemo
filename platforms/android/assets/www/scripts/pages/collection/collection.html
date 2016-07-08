@@ -1,0 +1,25 @@
+
+<ion-header-bar class="bar bar-header" style="top:0">
+  <button ng-click="goBack()" class="button icon button-icon ion-chevron-left">回退</button>
+  <h1 class="title">V2EX</h1>
+  <a class="button icon-left ion-home button-clear button-dark" ui-sref="index()"></a>
+</ion-header-bar>
+
+<div id="tabs-hide" class="tabs-striped tabs-top">
+  <div class="tabs tabs-icon-top" ng-class="{'bar-subheader': slideHeader, 'has-subheader': !slideHeader}">
+    <a class="tab-item" ui-sref="collection.nodes" ng-class="activeClass('nodes')">
+      <i class="icon ion-archive"></i>
+      节点收藏
+    </a>
+    <a class="tab-item" ui-sref="collection.topics" ng-class="activeClass('topics')">
+      <i class="icon ion-paperclip"></i>
+      主题收藏
+    </a>
+    <a class="tab-item" ui-sref="collection.following" ng-class="activeClass('following')">
+      <i class="icon ion-eye"></i>
+      特别关注
+    </a>
+  </div>
+</div>
+
+<div ui-view on-swipe-left="tabChangeLeft()" on-swipe-right="tabChangeRight()"></div>
